@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SpringCloud.iml" filepath="$PROJECT_DIR$/.idea/SpringCloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5XiangpaiBack/5XiangpaiBack.iml" filepath="$PROJECT_DIR$/5XiangpaiBack/5XiangpaiBack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5XiangpaiFront/5XiangpaiFront.iml" filepath="$PROJECT_DIR$/5XiangpaiFront/5XiangpaiFront.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/5xiangpai.iml" filepath="$PROJECT_DIR$/.idea/5xiangpai.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springbootConsumerFeign/springbootConsumerFeign.iml" filepath="$PROJECT_DIR$/springbootConsumerFeign/springbootConsumerFeign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springbootEureka/springbootEureka.iml" filepath="$PROJECT_DIR$/springbootEureka/springbootEureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springbootService1/springbootService (1).iml" filepath="$PROJECT_DIR$/springbootService1/springbootService (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/springbootService2/springbootService (2).iml" filepath="$PROJECT_DIR$/springbootService2/springbootService (2).iml" />
+      <module fileurl="file://$PROJECT_DIR$/springbootZuul/springbootZuul.iml" filepath="$PROJECT_DIR$/springbootZuul/springbootZuul.iml" />
     </modules>
   </component>
 </project>

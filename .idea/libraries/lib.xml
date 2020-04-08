@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/我想拍/5XiangpaiBack/WebRoot/WEB-INF/lib/alipay-sdk-java20170324180803.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/我想拍/5XiangpaiBack/WebRoot/WEB-INF/lib/Sdk4J.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/我想拍/5XiangpaiBack/WebRoot/WEB-INF/lib/alipay-sdk-java20170324180803-source.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/我想拍/5XiangpaiBack/WebRoot/WEB-INF/lib/commons-logging-1.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
