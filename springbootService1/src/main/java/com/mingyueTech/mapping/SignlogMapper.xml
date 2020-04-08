@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingyueTech.dao.SignlogMapper" >
+  <resultMap id="BaseResultMap" type="com.mingyueTech.entity.Signlog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="getcoin" property="getcoin" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, ctime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from signlog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from signlog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mingyueTech.entity.Signlog" >
+    insert into signlog (id, uid, ctime)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mingyueTech.entity.Signlog" >
+    insert into signlog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mingyueTech.entity.Signlog" >
+    update signlog
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mingyueTech.entity.Signlog" >
+    update signlog
+    set uid = #{uid,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="getSignlogByUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from signlog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+      <select id="getsigndayByUser" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+select lianxu from(sELECT max(days) lianxu,max(login_day) end_date 
+  FROM (SELECT uid,
+               @cont_day :=
+               (CASE
+                 WHEN (@last_uid = uid AND DATEDIFF(login_dt, @last_dt)=1) THEN
+                  (@cont_day + 1)
+                 WHEN (@last_uid = uid AND DATEDIFF(login_dt, @last_dt)<![CDATA[<]]>1) THEN
+                  (@cont_day + 0)
+                 ELSE
+                  1
+               END) AS days,
+               (@cont_ix := (@cont_ix + IF(@cont_day = 1, 1, 0))) AS cont_ix,
+               @last_uid := uid,
+               @last_dt := login_dt login_day
+          FROM (SELECT uid, DATE(signlog.ctime) AS login_dt
+                  FROM signlog
+                 ORDER BY uid, ctime) AS t,
+               (SELECT @last_uid := '',
+                       @last_dt  := '',
+                       @cont_ix  := 0,
+                       @cont_day := 0) AS t1) AS t2
+ where uid=#{uid,jdbcType=INTEGER} GROUP BY cont_ix) t3 where end_date=date_sub(curdate(),interval 1 day)
+  </select>
+      <select id="getsigntoday" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from signlog
+    where uid = #{id,jdbcType=INTEGER} order By ctime desc limit 0,1
+  </select>
+        <select id="getsigntodayByUser" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+select lianxu from(sELECT max(days) lianxu,max(login_day) end_date 
+  FROM (SELECT uid,
+               @cont_day :=
+               (CASE
+                 WHEN (@last_uid = uid AND DATEDIFF(login_dt, @last_dt)=1) THEN
+                  (@cont_day + 1)
+                 WHEN (@last_uid = uid AND DATEDIFF(login_dt, @last_dt)<![CDATA[<]]>1) THEN
+                  (@cont_day + 0)
+                 ELSE
+                  1
+               END) AS days,
+               (@cont_ix := (@cont_ix + IF(@cont_day = 1, 1, 0))) AS cont_ix,
+               @last_uid := uid,
+               @last_dt := login_dt login_day
+          FROM (SELECT uid, DATE(signlog.ctime) AS login_dt
+                  FROM signlog
+                 ORDER BY uid, ctime) AS t,
+               (SELECT @last_uid := '',
+                       @last_dt  := '',
+                       @cont_ix  := 0,
+                       @cont_day := 0) AS t1) AS t2
+ where uid=#{uid,jdbcType=INTEGER} GROUP BY cont_ix) t3 where end_date=curdate()
+  </select>
+</mapper>

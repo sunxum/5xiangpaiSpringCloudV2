@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/5XiangpaiBack" />
+    <file type="web" url="file://$PROJECT_DIR$/5XiangpaiFront" />
+  </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
@@ -12,6 +16,7 @@
         <option value="$PROJECT_DIR$/springbootService1/pom.xml" />
         <option value="$PROJECT_DIR$/springbootService2/pom.xml" />
         <option value="$PROJECT_DIR$/springbootZuul/pom.xml" />
+        <option value="$PROJECT_DIR$/5XiangpaiFront/pom.xml" />
       </list>
     </option>
   </component>

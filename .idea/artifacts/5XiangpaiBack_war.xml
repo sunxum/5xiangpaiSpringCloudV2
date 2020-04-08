@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="5XiangpaiBack:war">
+    <output-path>$PROJECT_DIR$/5XiangpaiBack/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>5XiangpaiBack</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="5xiangpaiBack-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="5XiangpaiBack:war exploded" />
+    </root>
+  </artifact>
+</component>

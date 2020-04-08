@@ -5,3 +5,9 @@ spring:
         config:
             uri : http://localhost:6002/
             profile : dev
+
+
+mybatis:
+    #config-locations: mybatis/mybatis-config.xml
+    mapper-locations: classpath:com/mingyueTech/mapping/*.xml
+    type-aliases-package: com.mingyueTech.dao

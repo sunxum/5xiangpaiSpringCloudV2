@@ -6,14 +6,11 @@ package sun.controller;
 import common.entity.RestfulResult;
 import common.utils.CommUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import sun.client.ServiceFeignClient;
-import sun.entity.ServiceInfo;
+import com.mingyueTech.entity.ServiceInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

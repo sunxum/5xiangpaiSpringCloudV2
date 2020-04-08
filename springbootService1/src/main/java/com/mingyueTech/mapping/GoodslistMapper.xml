@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingyueTech.dao.GoodslistMapper" >
+  <resultMap id="BaseResultMap" type="com.mingyueTech.entity.Goodslist" >
+    <id column="gl_id" property="glId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+    <result column="goods_pic" property="goodsPic" jdbcType="VARCHAR" />
+    <result column="goods_reserve_price" property="goodsReservePrice" jdbcType="DECIMAL" />
+    <result column="goods_category" property="goodsCategory" jdbcType="VARCHAR" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="goods_up_money" property="goodsUpMoney" jdbcType="DECIMAL" />
+    <result column="goods_down_money" property="goodsDownMoney" jdbcType="DECIMAL" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="goods_status" property="goodsStatus" jdbcType="INTEGER" />
+    <result column="taobao_url" property="taobaoUrl" jdbcType="VARCHAR" />
+    <result column="taobao_price" property="taobaoPrice" jdbcType="DECIMAL" />
+    <result column="taobao_saleusername" property="taobaoSaleusername" jdbcType="VARCHAR" />
+    <result column="public_userid" property="publicUserid" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mingyueTech.entity.Goodslist" extends="BaseResultMap" >
+    <result column="goods_desc" property="goodsDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gl_id, goods_name, goods_price, goods_pic, goods_reserve_price, goods_category, goods_num, 
+    goods_up_money, goods_down_money, begin_time, end_time, goods_status, taobao_url, 
+    taobao_price, taobao_saleusername, public_userid, ctime
+  </sql>
+  <sql id="Blob_Column_List" >
+    goods_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goodslist
+    where gl_id = #{glId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goodslist
+    where gl_id = #{glId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mingyueTech.entity.Goodslist" >
+    insert into goodslist (gl_id, goods_name, goods_price, 
+      goods_pic, goods_reserve_price, goods_category, 
+      goods_num, goods_up_money, goods_down_money, 
+      begin_time, end_time, goods_status, 
+      taobao_url, taobao_price, taobao_saleusername, 
+      public_userid, ctime, goods_desc
+      )
+    values (#{glId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DECIMAL}, 
+      #{goodsPic,jdbcType=VARCHAR}, #{goodsReservePrice,jdbcType=DECIMAL}, #{goodsCategory,jdbcType=VARCHAR}, 
+      #{goodsNum,jdbcType=INTEGER}, #{goodsUpMoney,jdbcType=DECIMAL}, #{goodsDownMoney,jdbcType=DECIMAL}, 
+      #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{goodsStatus,jdbcType=INTEGER}, 
+      #{taobaoUrl,jdbcType=VARCHAR}, #{taobaoPrice,jdbcType=DECIMAL}, #{taobaoSaleusername,jdbcType=VARCHAR}, 
+      #{publicUserid,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, #{goodsDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mingyueTech.entity.Goodslist" >
+    insert into goodslist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="glId != null" >
+        gl_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="goodsPic != null" >
+        goods_pic,
+      </if>
+      <if test="goodsReservePrice != null" >
+        goods_reserve_price,
+      </if>
+      <if test="goodsCategory != null" >
+        goods_category,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="goodsUpMoney != null" >
+        goods_up_money,
+      </if>
+      <if test="goodsDownMoney != null" >
+        goods_down_money,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="goodsStatus != null" >
+        goods_status,
+      </if>
+      <if test="taobaoUrl != null" >
+        taobao_url,
+      </if>
+      <if test="taobaoPrice != null" >
+        taobao_price,
+      </if>
+      <if test="taobaoSaleusername != null" >
+        taobao_saleusername,
+      </if>
+      <if test="publicUserid != null" >
+        public_userid,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="goodsDesc != null" >
+        goods_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="glId != null" >
+        #{glId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsPic != null" >
+        #{goodsPic,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsReservePrice != null" >
+        #{goodsReservePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsCategory != null" >
+        #{goodsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsUpMoney != null" >
+        #{goodsUpMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsDownMoney != null" >
+        #{goodsDownMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsStatus != null" >
+        #{goodsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="taobaoUrl != null" >
+        #{taobaoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoPrice != null" >
+        #{taobaoPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="taobaoSaleusername != null" >
+        #{taobaoSaleusername,jdbcType=VARCHAR},
+      </if>
+      <if test="publicUserid != null" >
+        #{publicUserid,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsDesc != null" >
+        #{goodsDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mingyueTech.entity.Goodslist" >
+    update goodslist
+    <set >
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsPic != null" >
+        goods_pic = #{goodsPic,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsReservePrice != null" >
+        goods_reserve_price = #{goodsReservePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsCategory != null" >
+        goods_category = #{goodsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsUpMoney != null" >
+        goods_up_money = #{goodsUpMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsDownMoney != null" >
+        goods_down_money = #{goodsDownMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsStatus != null" >
+        goods_status = #{goodsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="taobaoUrl != null" >
+        taobao_url = #{taobaoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoPrice != null" >
+        taobao_price = #{taobaoPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="taobaoSaleusername != null" >
+        taobao_saleusername = #{taobaoSaleusername,jdbcType=VARCHAR},
+      </if>
+      <if test="publicUserid != null" >
+        public_userid = #{publicUserid,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsDesc != null" >
+        goods_desc = #{goodsDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where gl_id = #{glId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mingyueTech.entity.Goodslist" >
+    update goodslist
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      goods_pic = #{goodsPic,jdbcType=VARCHAR},
+      goods_reserve_price = #{goodsReservePrice,jdbcType=DECIMAL},
+      goods_category = #{goodsCategory,jdbcType=VARCHAR},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_up_money = #{goodsUpMoney,jdbcType=DECIMAL},
+      goods_down_money = #{goodsDownMoney,jdbcType=DECIMAL},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      goods_status = #{goodsStatus,jdbcType=INTEGER},
+      taobao_url = #{taobaoUrl,jdbcType=VARCHAR},
+      taobao_price = #{taobaoPrice,jdbcType=DECIMAL},
+      taobao_saleusername = #{taobaoSaleusername,jdbcType=VARCHAR},
+      public_userid = #{publicUserid,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      goods_desc = #{goodsDesc,jdbcType=LONGVARCHAR}
+    where gl_id = #{glId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mingyueTech.entity.Goodslist" >
+    update goodslist
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      goods_pic = #{goodsPic,jdbcType=VARCHAR},
+      goods_reserve_price = #{goodsReservePrice,jdbcType=DECIMAL},
+      goods_category = #{goodsCategory,jdbcType=VARCHAR},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_up_money = #{goodsUpMoney,jdbcType=DECIMAL},
+      goods_down_money = #{goodsDownMoney,jdbcType=DECIMAL},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      goods_status = #{goodsStatus,jdbcType=INTEGER},
+      taobao_url = #{taobaoUrl,jdbcType=VARCHAR},
+      taobao_price = #{taobaoPrice,jdbcType=DECIMAL},
+      taobao_saleusername = #{taobaoSaleusername,jdbcType=VARCHAR},
+      public_userid = #{publicUserid,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    where gl_id = #{glId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+
+  
+  
+    <select id="getAllCanSale" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goodslist
+    where goods_status = 1 and goods_num>0
+  </select>
+  
+    <select id="getMyGoodsList" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goodslist
+    where public_userid = #{publicUserid,jdbcType=INTEGER}
+  </select>
+    <select id="getAllGoods" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goodslist
+  </select>
+      <select id="getAllGoodsByStats" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goodslist where goods_status =1
+  </select>
+  
+  <select id="getrefrshGoods" resultMap="BaseResultMap">
+    select 
+           goods_reserve_price,goods_down_money, gl_id,gl.goods_price
+    from goodslist gl
+  </select>
+ <update id="refrshGoods" >
+UPDATE goodslist 
+SET goods_reserve_price = goods_reserve_price-goods_down_money
+WHERE
+	goods_reserve_price > goods_price
+  </update>
+</mapper>

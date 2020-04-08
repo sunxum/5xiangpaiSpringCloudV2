@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingyueTech.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.mingyueTech.entity.Message" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="to_user_id" property="toUserId" jdbcType="INTEGER" />
+    <result column="to_username" property="toUsername" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="from_user_id" property="fromUserId" jdbcType="INTEGER" />
+    <result column="from_username" property="fromUsername" jdbcType="VARCHAR" />
+    <result column="m_status" property="mStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mingyueTech.entity.Message" extends="BaseResultMap" >
+    <result column="message" property="message" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fid, to_user_id, to_username, title, ctime, from_user_id, from_username, m_status
+  </sql>
+  <sql id="Blob_Column_List" >
+    message
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mingyueTech.entity.Message" >
+    insert into message (id, fid, to_user_id, 
+      to_username, title, ctime, 
+      from_user_id, from_username, m_status, 
+      message)
+    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{toUserId,jdbcType=INTEGER}, 
+      #{toUsername,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{fromUserId,jdbcType=INTEGER}, #{fromUsername,jdbcType=VARCHAR}, #{mStatus,jdbcType=INTEGER}, 
+      #{message,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mingyueTech.entity.Message" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="toUserId != null" >
+        to_user_id,
+      </if>
+      <if test="toUsername != null" >
+        to_username,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="fromUserId != null" >
+        from_user_id,
+      </if>
+      <if test="fromUsername != null" >
+        from_username,
+      </if>
+      <if test="mStatus != null" >
+        m_status,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="toUserId != null" >
+        #{toUserId,jdbcType=INTEGER},
+      </if>
+      <if test="toUsername != null" >
+        #{toUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromUserId != null" >
+        #{fromUserId,jdbcType=INTEGER},
+      </if>
+      <if test="fromUsername != null" >
+        #{fromUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="mStatus != null" >
+        #{mStatus,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mingyueTech.entity.Message" >
+    update message
+    <set >
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="toUserId != null" >
+        to_user_id = #{toUserId,jdbcType=INTEGER},
+      </if>
+      <if test="toUsername != null" >
+        to_username = #{toUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromUserId != null" >
+        from_user_id = #{fromUserId,jdbcType=INTEGER},
+      </if>
+      <if test="fromUsername != null" >
+        from_username = #{fromUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="mStatus != null" >
+        m_status = #{mStatus,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mingyueTech.entity.Message" >
+    update message
+    set fid = #{fid,jdbcType=INTEGER},
+      to_user_id = #{toUserId,jdbcType=INTEGER},
+      to_username = #{toUsername,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      from_user_id = #{fromUserId,jdbcType=INTEGER},
+      from_username = #{fromUsername,jdbcType=VARCHAR},
+      m_status = #{mStatus,jdbcType=INTEGER},
+      message = #{message,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mingyueTech.entity.Message" >
+    update message
+    set fid = #{fid,jdbcType=INTEGER},
+      to_user_id = #{toUserId,jdbcType=INTEGER},
+      to_username = #{toUsername,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      from_user_id = #{fromUserId,jdbcType=INTEGER},
+      from_username = #{fromUsername,jdbcType=VARCHAR},
+      m_status = #{mStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <select id="getall" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+        ,
+    <include refid="Blob_Column_List" />
+    from message
+  </select>
+
+      <select id="getbyUsername" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+        ,
+    <include refid="Blob_Column_List" />
+    from message
+    where to_username = #{toUsername,jdbcType=VARCHAR}
+  </select>
+        <select id="getbyfromUsername" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+        ,
+    <include refid="Blob_Column_List" />
+    from message
+    where from_username = #{fromUsername,jdbcType=VARCHAR}
+  </select>
+          <select id="getbyfId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+        ,
+    <include refid="Blob_Column_List" />
+    from message
+    where fid = #{fid,jdbcType=INTEGER}
+  </select>
+
+</mapper>

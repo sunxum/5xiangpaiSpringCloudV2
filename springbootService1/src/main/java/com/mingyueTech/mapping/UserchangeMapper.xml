@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingyueTech.dao.UserchangeMapper" >
+  <resultMap id="BaseResultMap" type="com.mingyueTech.entity.Userchange" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_id_code" property="userIdCode" jdbcType="VARCHAR" />
+    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
+    <result column="user_addr" property="userAddr" jdbcType="VARCHAR" />
+    <result column="user_zip" property="userZip" jdbcType="VARCHAR" />
+    <result column="user_status" property="userStatus" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="headimg" property="headimg" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="qqnum" property="qqnum" jdbcType="VARCHAR" />
+    <result column="invate_u_id" property="invateUId" jdbcType="INTEGER" />
+    <result column="address_area1" property="addressArea1" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, user_password, user_id_code, user_tel, user_addr, user_zip, user_status, 
+    user_email, score, headimg, area, qqnum, invate_u_id, address_area1, ctime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userchange
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userchange
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mingyueTech.entity.Userchange" >
+    insert into userchange (user_id, user_name, user_password, 
+      user_id_code, user_tel, user_addr, 
+      user_zip, user_status, user_email, 
+      score, headimg, area, 
+      qqnum, invate_u_id, address_area1, 
+      ctime)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userIdCode,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, #{userAddr,jdbcType=VARCHAR}, 
+      #{userZip,jdbcType=VARCHAR}, #{userStatus,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
+      #{score,jdbcType=INTEGER}, #{headimg,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{qqnum,jdbcType=VARCHAR}, #{invateUId,jdbcType=INTEGER}, #{addressArea1,jdbcType=INTEGER}, 
+      #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mingyueTech.entity.Userchange" >
+    insert into userchange
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userIdCode != null" >
+        user_id_code,
+      </if>
+      <if test="userTel != null" >
+        user_tel,
+      </if>
+      <if test="userAddr != null" >
+        user_addr,
+      </if>
+      <if test="userZip != null" >
+        user_zip,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="headimg != null" >
+        headimg,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="qqnum != null" >
+        qqnum,
+      </if>
+      <if test="invateUId != null" >
+        invate_u_id,
+      </if>
+      <if test="addressArea1 != null" >
+        address_area1,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdCode != null" >
+        #{userIdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddr != null" >
+        #{userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="userZip != null" >
+        #{userZip,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="headimg != null" >
+        #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="qqnum != null" >
+        #{qqnum,jdbcType=VARCHAR},
+      </if>
+      <if test="invateUId != null" >
+        #{invateUId,jdbcType=INTEGER},
+      </if>
+      <if test="addressArea1 != null" >
+        #{addressArea1,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mingyueTech.entity.Userchange" >
+    update userchange
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdCode != null" >
+        user_id_code = #{userIdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddr != null" >
+        user_addr = #{userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="userZip != null" >
+        user_zip = #{userZip,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="headimg != null" >
+        headimg = #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="qqnum != null" >
+        qqnum = #{qqnum,jdbcType=VARCHAR},
+      </if>
+      <if test="invateUId != null" >
+        invate_u_id = #{invateUId,jdbcType=INTEGER},
+      </if>
+      <if test="addressArea1 != null" >
+        address_area1 = #{addressArea1,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mingyueTech.entity.Userchange" >
+    update userchange
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_id_code = #{userIdCode,jdbcType=VARCHAR},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_addr = #{userAddr,jdbcType=VARCHAR},
+      user_zip = #{userZip,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      headimg = #{headimg,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      qqnum = #{qqnum,jdbcType=VARCHAR},
+      invate_u_id = #{invateUId,jdbcType=INTEGER},
+      address_area1 = #{addressArea1,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

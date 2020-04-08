@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingyueTech.dao.CoinchangeMapper" >
+  <resultMap id="BaseResultMap" type="com.mingyueTech.entity.Coinchange" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="freecoin" property="freecoin" jdbcType="INTEGER" />
+    <result column="paycoin" property="paycoin" jdbcType="INTEGER" />
+    <result column="practivicoin" property="practivicoin" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, u_id, freecoin, paycoin, practivicoin, ctime, description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from coinchange
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from coinchange
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mingyueTech.entity.Coinchange" >
+    insert into coinchange (id, u_id, freecoin, 
+      paycoin, practivicoin, ctime, 
+      description)
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{freecoin,jdbcType=INTEGER}, 
+      #{paycoin,jdbcType=INTEGER}, #{practivicoin,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mingyueTech.entity.Coinchange" >
+    insert into coinchange
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="freecoin != null" >
+        freecoin,
+      </if>
+      <if test="paycoin != null" >
+        paycoin,
+      </if>
+      <if test="practivicoin != null" >
+        practivicoin,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="freecoin != null" >
+        #{freecoin,jdbcType=INTEGER},
+      </if>
+      <if test="paycoin != null" >
+        #{paycoin,jdbcType=INTEGER},
+      </if>
+      <if test="practivicoin != null" >
+        #{practivicoin,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mingyueTech.entity.Coinchange" >
+    update coinchange
+    <set >
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="freecoin != null" >
+        freecoin = #{freecoin,jdbcType=INTEGER},
+      </if>
+      <if test="paycoin != null" >
+        paycoin = #{paycoin,jdbcType=INTEGER},
+      </if>
+      <if test="practivicoin != null" >
+        practivicoin = #{practivicoin,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mingyueTech.entity.Coinchange" >
+    update coinchange
+    set u_id = #{uId,jdbcType=INTEGER},
+      freecoin = #{freecoin,jdbcType=INTEGER},
+      paycoin = #{paycoin,jdbcType=INTEGER},
+      practivicoin = #{practivicoin,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="getcoinchangebyuser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from coinchange
+    where u_id =#{uid,jdbcType=INTEGER}
+  </select>
+</mapper>

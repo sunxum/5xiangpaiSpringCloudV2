@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingyueTech.dao.CategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.mingyueTech.entity.Category" >
+    <id column="epc_id" property="epcId" jdbcType="INTEGER" />
+    <result column="epc_name" property="epcName" jdbcType="VARCHAR" />
+    <result column="epc_parent_id" property="epcParentId" jdbcType="INTEGER" />
+    <result column="epc_flag" property="epcFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    epc_id, epc_name, epc_parent_id, epc_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from category
+    where epc_id = #{epcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from category
+    where epc_id = #{epcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mingyueTech.entity.Category" >
+    insert into category (epc_id, epc_name, epc_parent_id, 
+      epc_flag)
+    values (#{epcId,jdbcType=INTEGER}, #{epcName,jdbcType=VARCHAR}, #{epcParentId,jdbcType=INTEGER}, 
+      #{epcFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mingyueTech.entity.Category" >
+    insert into category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="epcId != null" >
+        epc_id,
+      </if>
+      <if test="epcName != null" >
+        epc_name,
+      </if>
+      <if test="epcParentId != null" >
+        epc_parent_id,
+      </if>
+      <if test="epcFlag != null" >
+        epc_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="epcId != null" >
+        #{epcId,jdbcType=INTEGER},
+      </if>
+      <if test="epcName != null" >
+        #{epcName,jdbcType=VARCHAR},
+      </if>
+      <if test="epcParentId != null" >
+        #{epcParentId,jdbcType=INTEGER},
+      </if>
+      <if test="epcFlag != null" >
+        #{epcFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mingyueTech.entity.Category" >
+    update category
+    <set >
+      <if test="epcName != null" >
+        epc_name = #{epcName,jdbcType=VARCHAR},
+      </if>
+      <if test="epcParentId != null" >
+        epc_parent_id = #{epcParentId,jdbcType=INTEGER},
+      </if>
+      <if test="epcFlag != null" >
+        epc_flag = #{epcFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where epc_id = #{epcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mingyueTech.entity.Category" >
+    update category
+    set epc_name = #{epcName,jdbcType=VARCHAR},
+      epc_parent_id = #{epcParentId,jdbcType=INTEGER},
+      epc_flag = #{epcFlag,jdbcType=VARCHAR}
+    where epc_id = #{epcId,jdbcType=INTEGER}
+  </update>
+  
+    <select id="getbyroot" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from category
+    where epc_parent_id = 6
+  </select>
+  
+    <select id="getcategoryname" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    select 
+    epc_name
+    from category
+    where epc_id = #{epcId,jdbcType=INTEGER}
+  </select>
+    <select id="getGoodsCategory" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from category where epc_parent_id!=0
+  </select>
+ 
+</mapper>

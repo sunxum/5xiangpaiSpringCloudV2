@@ -10,10 +10,14 @@
         <module name="springbootService (2)" />
         <module name="springbootEureka" />
         <module name="springbootZuul" />
+        <module name="5XiangpaiFront" />
         <module name="springbootConsumerFeign" />
+        <module name="5XiangpaiBack" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="5XiangpaiBack" target="1.8" />
+      <module name="5XiangpaiFront" target="1.8" />
       <module name="springbootConfig" target="1.8" />
       <module name="springbootConsumerFeign" target="1.8" />
       <module name="springbootEureka" target="1.8" />

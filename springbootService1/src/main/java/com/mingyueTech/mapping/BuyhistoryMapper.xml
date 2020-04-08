@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingyueTech.dao.BuyhistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.mingyueTech.entity.Buyhistory" >
+    <id column="b_id" property="bId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="gl_id" property="glId" jdbcType="INTEGER" />
+    <result column="dealmoney" property="dealmoney" jdbcType="DECIMAL" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="area_aid" property="areaAid" jdbcType="INTEGER" />
+    <result column="detail_area" property="detailArea" jdbcType="VARCHAR" />
+    <result column="user_real_name" property="userRealName" jdbcType="VARCHAR" />
+    <result column="user_real_mobile" property="userRealMobile" jdbcType="VARCHAR" />
+    <result column="post_detail_id" property="postDetailId" jdbcType="INTEGER" />
+    <result column="send_goods_time" property="sendGoodsTime" jdbcType="TIMESTAMP" />
+    <result column="recive_goods_time" property="reciveGoodsTime" jdbcType="TIMESTAMP" />
+    <result column="buystatus" property="buystatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    b_id, order_id, order_type, u_id,gl_id, dealmoney, ctime, 
+    area_aid, detail_area, user_real_name, user_real_mobile, post_detail_id, send_goods_time, 
+    recive_goods_time, buystatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from buyhistory
+    where b_id = #{bId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from buyhistory
+    where b_id = #{bId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mingyueTech.entity.Buyhistory" >
+    insert into buyhistory (b_id, order_id, order_type, 
+      u_id, gl_id, dealmoney, 
+       ctime, 
+      area_aid, detail_area, user_real_name, 
+      user_real_mobile, post_detail_id, send_goods_time, 
+      recive_goods_time, buystatus)
+    values (#{bId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, 
+      #{uId,jdbcType=INTEGER}, #{glId,jdbcType=INTEGER}, #{dealmoney,jdbcType=DECIMAL}, 
+      #{alreadyPay,jdbcType=DECIMAL}, #{needMoney,jdbcType=DECIMAL}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{areaAid,jdbcType=INTEGER}, #{detailArea,jdbcType=VARCHAR}, #{userRealName,jdbcType=VARCHAR}, 
+      #{userRealMobile,jdbcType=VARCHAR}, #{postDetailId,jdbcType=INTEGER}, #{sendGoodsTime,jdbcType=TIMESTAMP}, 
+      #{reciveGoodsTime,jdbcType=TIMESTAMP}, #{buystatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="bId" parameterType="com.mingyueTech.entity.Buyhistory" >
+    insert into buyhistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        b_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="glId != null" >
+        gl_id,
+      </if>
+      <if test="dealmoney != null" >
+        dealmoney,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="areaAid != null" >
+        area_aid,
+      </if>
+      <if test="detailArea != null" >
+        detail_area,
+      </if>
+      <if test="userRealName != null" >
+        user_real_name,
+      </if>
+      <if test="userRealMobile != null" >
+        user_real_mobile,
+      </if>
+      <if test="postDetailId != null" >
+        post_detail_id,
+      </if>
+      <if test="sendGoodsTime != null" >
+        send_goods_time,
+      </if>
+      <if test="reciveGoodsTime != null" >
+        recive_goods_time,
+      </if>
+      <if test="buystatus != null" >
+        buystatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        #{bId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="glId != null" >
+        #{glId,jdbcType=INTEGER},
+      </if>
+      <if test="dealmoney != null" >
+        #{dealmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaAid != null" >
+        #{areaAid,jdbcType=INTEGER},
+      </if>
+      <if test="detailArea != null" >
+        #{detailArea,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealName != null" >
+        #{userRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealMobile != null" >
+        #{userRealMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="postDetailId != null" >
+        #{postDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="sendGoodsTime != null" >
+        #{sendGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reciveGoodsTime != null" >
+        #{reciveGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buystatus != null" >
+        #{buystatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mingyueTech.entity.Buyhistory" >
+    update buyhistory
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="glId != null" >
+        gl_id = #{glId,jdbcType=INTEGER},
+      </if>
+      <if test="dealmoney != null" >
+        dealmoney = #{dealmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaAid != null" >
+        area_aid = #{areaAid,jdbcType=INTEGER},
+      </if>
+      <if test="detailArea != null" >
+        detail_area = #{detailArea,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealName != null" >
+        user_real_name = #{userRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealMobile != null" >
+        user_real_mobile = #{userRealMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="postDetailId != null" >
+        post_detail_id = #{postDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="sendGoodsTime != null" >
+        send_goods_time = #{sendGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reciveGoodsTime != null" >
+        recive_goods_time = #{reciveGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buystatus != null" >
+        buystatus = #{buystatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mingyueTech.entity.Buyhistory" >
+    update buyhistory
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      u_id = #{uId,jdbcType=INTEGER},
+      gl_id = #{glId,jdbcType=INTEGER},
+      dealmoney = #{dealmoney,jdbcType=DECIMAL},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      area_aid = #{areaAid,jdbcType=INTEGER},
+      detail_area = #{detailArea,jdbcType=VARCHAR},
+      user_real_name = #{userRealName,jdbcType=VARCHAR},
+      user_real_mobile = #{userRealMobile,jdbcType=VARCHAR},
+      post_detail_id = #{postDetailId,jdbcType=INTEGER},
+      send_goods_time = #{sendGoodsTime,jdbcType=TIMESTAMP},
+      recive_goods_time = #{reciveGoodsTime,jdbcType=TIMESTAMP},
+      buystatus = #{buystatus,jdbcType=VARCHAR}
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+    <select id="getallcomplate" resultType="java.util.HashMap">
+    select 
+		b_id,u.user_name,gl.goods_name
+    from buyhistory bh,user u,goodslist gl
+    where buystatus<![CDATA[>=]]>30 and u.user_status='computer' and g.gl_id=gl.gl_id and bh.u_id=u.user_id
+  </select>
+    <resultMap id="BaseResultMapDetail" type="com.mingyueTech.entity.BuyhistoryDetail" >
+    <id column="b_id" property="bId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="u_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+    <result column="goods_pic" property="goodsPic" jdbcType="VARCHAR" />
+    <result column="dealmoney" property="dealmoney" jdbcType="DECIMAL" />
+    <result column="already_pay" property="alreadyPay" jdbcType="DECIMAL" />
+    <result column="need_money" property="needMoney" jdbcType="DECIMAL" />
+    <result column="buystatus" property="buystatus" jdbcType="VARCHAR" />
+  </resultMap>
+    <sql id="Base_Column_ListDetail" >
+    b_id, order_id,u_id,user_name,goods_name, goods_price, goods_pic,dealmoney, already_pay, need_money, buystatus,bh.ctime ctime
+  </sql>
+      <select id="getbuyhistorycountbyuser" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+    count(*)
+    from buyhistory bh,goodslist gl,user u
+    where  g.gl_id=gl.gl_id and bh.u_id=u.user_id and  u_id = #{userId,jdbcType=INTEGER} and buystatus<![CDATA[<=]]>9 
+  </select>
+        <select id="getbuyhistoryispaybyuser" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+    count(*)
+    from buyhistory bh,goodslist gl,user u
+    where  g.gl_id=gl.gl_id and bh.u_id=u.user_id and  u_id = #{userId,jdbcType=INTEGER} and buystatus<![CDATA[<=]]>19 and buystatus<![CDATA[>=]]>10 
+  </select>
+        <select id="getbuyhistoryissendbyuser" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+    count(*)
+    from buyhistory bh,goodslist gl,user u
+    where g.gl_id=gl.gl_id and bh.u_id=u.user_id and  u_id = #{userId,jdbcType=INTEGER} and buystatus<![CDATA[<=]]>29 and buystatus<![CDATA[>=]]>20 
+  </select>
+          <select id="getbuyhistoryistakebyuser" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+    count(*)
+    from buyhistory bh,goodslist gl,user u
+    where g.gl_id=gl.gl_id and bh.u_id=u.user_id and  u_id = #{userId,jdbcType=INTEGER} and buystatus<![CDATA[<=]]>39 and buystatus<![CDATA[>=]]>30 
+  </select>
+   <select id="getbuyhistoryispublicpicbyuser" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+    count(*)
+    from buyhistory bh,goodslist gl,user u
+    where g.gl_id=gl.gl_id and bh.u_id=u.user_id and  u_id = #{userId,jdbcType=INTEGER} and buystatus<![CDATA[<=]]>49 and buystatus<![CDATA[>=]]>40 
+  </select>
+    <select id="getbuyhistorybyuser" resultMap="BaseResultMapDetail" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_ListDetail" />
+    from buyhistory bh,goodslist gl,user u
+    where g.gl_id=gl.gl_id and bh.u_id=u.user_id and  u_id = #{userId,jdbcType=INTEGER} order by bh.ctime desc
+  </select>
+  
+      <select id="getbuyhistorynopayDetailbyuser" resultMap="BaseResultMapDetail" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_ListDetail" />
+    from buyhistory bh,goodslist gl,user u
+    where g.gl_id=gl.gl_id and bh.u_id=u.user_id and u_id = #{userId,jdbcType=INTEGER} and buystatus<![CDATA[<=]]>9 order by bh.ctime desc
+  </select>
+      <select id="getbuyhistoryissendDetailbyuser" resultMap="BaseResultMapDetail" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_ListDetail" />
+    from buyhistory bh,goodslist gl,user u
+    where g.gl_id=gl.gl_id and bh.u_id=u.user_id and  u_id = #{userId,jdbcType=INTEGER} and buystatus<![CDATA[<=]]>29 and buystatus<![CDATA[>=]]>20 order by bh.ctime desc
+  </select>
+      <select id="getbuyhistoryistakeDetailbyuser" resultMap="BaseResultMapDetail" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_ListDetail" />
+    from buyhistory bh,goodslist gl,user u
+    where g.gl_id=gl.gl_id and bh.u_id=u.user_id and  u_id = #{userId,jdbcType=INTEGER} and buystatus<![CDATA[<=]]>39 and buystatus<![CDATA[>=]]>30 order by bh.ctime desc
+  </select>
+      <select id="getbuyhistory" resultMap="BaseResultMapDetail">
+    select 
+    <include refid="Base_Column_ListDetail" />
+    from buyhistory bh,goodslist gl,user u
+    where g.gl_id=gl.gl_id and bh.u_id=u.user_id
+  </select>
+      <select id="getBuyHistoryList" resultType="java.util.HashMap" parameterType="java.lang.Integer">
+    select 
+		b_id bId,g.goods_id goodsId,gl.goods_name goodsName,gl.goods_pic goodsPic,gl.goods_price goodsPrice,bh.dealmoney,bh.ctime
+    from buyhistory bh,user u,goodslist gl
+    where u.user_id=#{userId} and  bh.u_id=u.user_id
+  </select>
+      <select id="getMaxId" resultType="java.lang.Integer">
+    select 
+    max(b_id)
+    from buyhistory
+  </select>
+    <select id="getByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from buyhistory
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+      <select id="getOrderDetail" resultType="com.mingyueTech.entity.BuyhistoryDetailVo" parameterType="java.lang.String" >
+SELECT
+	bId,
+	orderId,
+	orderType,
+	userId,
+	userName,
+	goodsName,
+	goodsPrice,
+	goodsPic,
+	dealmoney dealMoney,
+	buystatus buyStatus,
+	createtime createTime,
+	sendGoodsTime,
+	reciveGoodsTime,
+	aId,
+	uRealName,
+	uRealMoblie,
+	detailArea,
+	post_type postType,
+publicpic.ctime publicpicTime,
+	post_num postNum from(
+		SELECT
+			bh.b_id bId,
+			bh.order_id orderId,
+			order_type orderType,
+			u_id userId,
+			user_name userName,
+			goods_name goodsName,
+			goods_price goodsPrice,
+			goods_pic goodsPic,
+			dealmoney,
+			buystatus,
+			bh.ctime createtime,
+			send_goods_time sendGoodsTime,
+			recive_goods_time reciveGoodsTime,
+			area_aid aId,
+			detail_area detailArea,
+			user_real_name uRealName,
+			user_real_mobile uRealMoblie,
+			post_detail_id
+			
+		FROM
+			buyhistory bh,
+			goodslist gl,
+			users	u
+		WHERE
+		 bh.u_id = u.user_id
+		 and bh.gl_id=gl.gl_id
+		AND b_id =#{bId,jdbcType=INTEGER}
+	) temp1
+LEFT JOIN post_detail ON temp1.post_detail_id = post_detail.id
+LEFT JOIN publicpic ON temp1.bid = publicpic.b_id
+  </select>
+  
+</mapper>

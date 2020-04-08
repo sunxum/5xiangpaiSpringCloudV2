@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingyueTech.dao.BidMapper" >
+  <resultMap id="BaseResultMap" type="com.mingyueTech.entity.Bid" >
+    <id column="bid_id" property="bidId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="buyer_id" property="buyerId" jdbcType="INTEGER" />
+    <result column="bid_time" property="bidTime" jdbcType="TIMESTAMP" />
+    <result column="bid_price" property="bidPrice" jdbcType="DECIMAL" />
+    <result column="bid_status" property="bidStatus" jdbcType="INTEGER" />
+    <result column="use_freecoin" property="useFreecoin" jdbcType="INTEGER" />
+    <result column="use_paycoin" property="usePaycoin" jdbcType="VARCHAR" />
+    <result column="use_practivecoin" property="usePractivecoin" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bid_id, goods_id, buyer_id, bid_time, bid_price, bid_status, use_freecoin, use_paycoin, 
+    use_practivecoin
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bid
+    where bid_id = #{bidId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bid
+    where bid_id = #{bidId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mingyueTech.entity.Bid" >
+    insert into bid (bid_id, goods_id, buyer_id, 
+      bid_time, bid_price, bid_status, 
+      use_freecoin, use_paycoin, use_practivecoin
+      )
+    values (#{bidId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{buyerId,jdbcType=INTEGER}, 
+      #{bidTime,jdbcType=TIMESTAMP}, #{bidPrice,jdbcType=DECIMAL}, #{bidStatus,jdbcType=INTEGER}, 
+      #{useFreecoin,jdbcType=INTEGER}, #{usePaycoin,jdbcType=VARCHAR}, #{usePractivecoin,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mingyueTech.entity.Bid" >
+    insert into bid
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bidId != null" >
+        bid_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="bidTime != null" >
+        bid_time,
+      </if>
+      <if test="bidPrice != null" >
+        bid_price,
+      </if>
+      <if test="bidStatus != null" >
+        bid_status,
+      </if>
+      <if test="useFreecoin != null" >
+        use_freecoin,
+      </if>
+      <if test="usePaycoin != null" >
+        use_paycoin,
+      </if>
+      <if test="usePractivecoin != null" >
+        use_practivecoin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bidId != null" >
+        #{bidId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="bidTime != null" >
+        #{bidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bidPrice != null" >
+        #{bidPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bidStatus != null" >
+        #{bidStatus,jdbcType=INTEGER},
+      </if>
+      <if test="useFreecoin != null" >
+        #{useFreecoin,jdbcType=INTEGER},
+      </if>
+      <if test="usePaycoin != null" >
+        #{usePaycoin,jdbcType=VARCHAR},
+      </if>
+      <if test="usePractivecoin != null" >
+        #{usePractivecoin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mingyueTech.entity.Bid" >
+    update bid
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="bidTime != null" >
+        bid_time = #{bidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bidPrice != null" >
+        bid_price = #{bidPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bidStatus != null" >
+        bid_status = #{bidStatus,jdbcType=INTEGER},
+      </if>
+      <if test="useFreecoin != null" >
+        use_freecoin = #{useFreecoin,jdbcType=INTEGER},
+      </if>
+      <if test="usePaycoin != null" >
+        use_paycoin = #{usePaycoin,jdbcType=VARCHAR},
+      </if>
+      <if test="usePractivecoin != null" >
+        use_practivecoin = #{usePractivecoin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bid_id = #{bidId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mingyueTech.entity.Bid" >
+    update bid
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      buyer_id = #{buyerId,jdbcType=INTEGER},
+      bid_time = #{bidTime,jdbcType=TIMESTAMP},
+      bid_price = #{bidPrice,jdbcType=DECIMAL},
+      bid_status = #{bidStatus,jdbcType=INTEGER},
+      use_freecoin = #{useFreecoin,jdbcType=INTEGER},
+      use_paycoin = #{usePaycoin,jdbcType=VARCHAR},
+      use_practivecoin = #{usePractivecoin,jdbcType=VARCHAR}
+    where bid_id = #{bidId,jdbcType=INTEGER}
+  </update>
+  
+    <select id="getRealbidnum" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+  SELECT buyer_id buyId from  
+   (select 
+    count(*) c,b.buyer_id,b.goods_id goodsId
+    from bid b
+    where  b.goods_id = #{goodsId,jdbcType=INTEGER}   GROUP BY b.buyer_id) temp1,goodslist gl
+where g.gl_id=gl.gl_id and (c*10)>=gl.taobao_price 
+  </select>
+      <select id="getPaycoinByUser" resultType="java.lang.Integer" >
+    select 
+   IFNULL(sum(use_paycoin),0)
+    from bid b
+    where b.goods_id = #{0} and b.buyer_id=#{1}
+  </select>
+  <select id="getlessBiduser" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+    uid
+    from bid b
+    where b.goods_id = #{goodsId,jdbcType=INTEGER} order By id desc limit 0,1
+  </select>
+    <select id="getbidsbygoodsid" resultType="com.mingyueTech.entity.Bidlite" parameterType="java.lang.Integer" >
+select 
+    u.user_name userName,b.bid_price bidPrice,a.area area
+    from bid b,`user` u,(select t1.aid areaid,CONCAT(t2.`name`,t1.`name`) area from area t1,area t2 where t1.parentid=t2.aid) a
+    where b.goods_id =#{goodsId,jdbcType=INTEGER}  and u.user_id=b.buyer_id and a.areaid=u.address_area1 order by b.bid_time desc limit 0,10
+  </select>
+      <select id="getMyBidList" resultType="com.mingyueTech.entity.Bidlite" parameterType="java.lang.Integer" >
+select 
+    distinct *
+    from bid b,`user` u,goodslist gl
+    where g.glId =gl.glId  and u.user_id=b.buyer_id and b.goods_id =g.goods_id and u.user_id=#{userId}
+  </select>
+        <select id="getMyBidAllList" resultType="com.mingyueTech.entity.BidAllForUser" parameterType="java.lang.Integer">
+SELECT
+	id,
+	gl.goods_name goodsName,
+	gl.goods_pic goodsPic,
+	gl.goods_price goodsPrice,
+	goods.goods_id goodsId,
+	goods.less_bidusername lessBidusername,
+	goods.less_money lessMoney,
+	goods.goods_status goodsStatus,
+	goods.dealtime dealtime,
+	count,
+	c.bid_status bidStatus,
+	c.bid_time bidTime
+FROM
+	goodslist gl,
+	goods, (
+		SELECT
+			MAX(bid_id) id,
+			b.buyer_id,
+			count(*) count
+		FROM
+			bid b
+			
+		WHERE
+			b.buyer_id = #{buyerId,jdbcType=INTEGER}
+		AND b.goods_id = g.goods_id
+		GROUP BY
+			g.goods_id
+	) A,
+	bid c
+WHERE
+A.id = C.bid_id
+AND C.goods_id = goods.goods_id
+AND goods.gl_id = gl.gl_id
+  </select>
+        <select id="getBidingList" resultType="java.util.HashMap" parameterType="java.lang.Integer" >
+select 
+    distinct g.goods_id,gl.goods_price,g.less_second,g.less_money,g.less_bidusername
+    from bid b,`user` u,goodslist gl
+    where u.user_id=b.buyer_id and  u.user_id=#{userId}
+  </select>
+</mapper>

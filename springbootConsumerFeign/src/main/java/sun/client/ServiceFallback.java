@@ -2,7 +2,7 @@ package sun.client;
 
 import common.entity.RestfulResult;
 import org.springframework.stereotype.Component;
-import sun.entity.ServiceInfo;
+import com.mingyueTech.entity.ServiceInfo;
 
 @Component
 public class ServiceFallback implements ServiceFeignClient{

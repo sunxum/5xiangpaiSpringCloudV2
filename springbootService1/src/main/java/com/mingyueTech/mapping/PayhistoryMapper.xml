@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingyueTech.dao.PayhistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.mingyueTech.entity.Payhistory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="alipay_orderid" property="alipayOrderid" jdbcType="VARCHAR" />
+    <result column="pay_orderid" property="payOrderid" jdbcType="VARCHAR" />
+    <result column="paymoney" property="paymoney" jdbcType="DECIMAL" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="utime" property="utime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, alipay_orderid, pay_orderid, paymoney, ctime, utime, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from payhistory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from payhistory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mingyueTech.entity.Payhistory" >
+    insert into payhistory (id, uid, alipay_orderid, 
+      pay_orderid, paymoney, ctime, 
+      utime, status)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{alipayOrderid,jdbcType=VARCHAR}, 
+      #{payOrderid,jdbcType=VARCHAR}, #{paymoney,jdbcType=DECIMAL}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{utime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mingyueTech.entity.Payhistory" >
+    insert into payhistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="alipayOrderid != null" >
+        alipay_orderid,
+      </if>
+      <if test="payOrderid != null" >
+        pay_orderid,
+      </if>
+      <if test="paymoney != null" >
+        paymoney,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="utime != null" >
+        utime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="alipayOrderid != null" >
+        #{alipayOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrderid != null" >
+        #{payOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null" >
+        #{paymoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utime != null" >
+        #{utime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mingyueTech.entity.Payhistory" >
+    update payhistory
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="alipayOrderid != null" >
+        alipay_orderid = #{alipayOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrderid != null" >
+        pay_orderid = #{payOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null" >
+        paymoney = #{paymoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utime != null" >
+        utime = #{utime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mingyueTech.entity.Payhistory" >
+    update payhistory
+    set uid = #{uid,jdbcType=INTEGER},
+      alipay_orderid = #{alipayOrderid,jdbcType=VARCHAR},
+      pay_orderid = #{payOrderid,jdbcType=VARCHAR},
+      paymoney = #{paymoney,jdbcType=DECIMAL},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      utime = #{utime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="getMaxId" resultType="java.lang.Integer">
+    select 
+    max(id)
+    from payhistory
+  </select>
+    <select id="getByAlipayOrderid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from payhistory
+    where alipay_orderid = #{alipayOrderid,jdbcType=VARCHAR}
+  </select>
+</mapper>
